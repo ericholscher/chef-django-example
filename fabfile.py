@@ -2,7 +2,7 @@ from fabric.api import env, local, sudo
 env.user = 'root'
 env.hosts = ['204.232.205.196']
 
-env.chef_executable = '/var/lib/gems/1.8/gems/bin/chef-solo'
+env.chef_executable = '/var/lib/gems/1.8/bin/chef-solo'
 
 
 def install_chef():
