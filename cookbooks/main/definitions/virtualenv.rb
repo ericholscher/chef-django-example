@@ -29,12 +29,16 @@ define :virtualenv, :action => :create, :owner => "root", :group => "root", :mod
             mode params[:mode]
         end
         execute "create-virtualenv-#{path}" do
+            user params[:owner]
+            group params[:group]
             command "virtualenv #{path}"
             not_if "test -f #{path}/bin/python"
         end
         params[:packages].each_pair do |package, version|
             pip = "#{path}/bin/pip"
             execute "install-#{package}-#{path}" do
+                user params[:owner]
+                group params[:group]
                 command "#{pip} install #{package}==#{version}"
                 not_if "[ `#{pip} freeze | grep #{package} | cut -d'=' -f3` = '#{version}' ]"
             end
