@@ -1,6 +1,6 @@
 {
-  "run_list": [ "main::default", "main::python", "main::nginx" ],
-  "systemwide_python_packages": {"virtualenv": "1.5.1"}
+  "run_list": [ "main::default", "main::python", "main::readthedocs", "main::nginx" ],
+  "systemwide_python_packages": {"virtualenv": "1.5.1", "mercurial": "1.7"}
 
 
 }
