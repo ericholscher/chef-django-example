@@ -33,6 +33,8 @@ script "Install Requirements" do
   EOH
 end
 
+
+=begin
 cookbook_file "/etc/init/readthedocs-gunicorn.conf" do
     source "gunicorn.conf"
     owner "root"
@@ -47,4 +49,5 @@ service "readthedocs-gunicorn" do
     supports :restart => true, :reload => true, :status => true
     action [:enable, :start]
 end
+=end
 
