@@ -12,7 +12,7 @@ env.chef_executable = '/var/lib/gems/1.8/bin/chef-solo'
 def install_chef():
     sudo('apt-get update', pty=True)
     sudo('apt-get install -y git-core rubygems ruby ruby-dev', pty=True)
-    sudo('gem install chef', pty=True)
+    sudo('gem install chef --no-ri --no-rdoc', pty=True)
 
 def sync_config():
     local('rsync -av . %s@%s:/etc/chef' % (env.user, env.hosts[0]))
