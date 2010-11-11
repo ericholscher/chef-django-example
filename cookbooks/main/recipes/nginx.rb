@@ -6,7 +6,7 @@ service "nginx" do
   enabled true
   running true
   supports :status => true, :restart => true, :reload => true
-  action [:start, :enable, :reload]
+  action [:start, :enable]
 end
 
 cookbook_file "/etc/nginx/sites-enabled/readthedocs" do
@@ -29,4 +29,3 @@ cookbook_file "/etc/nginx/mime.types" do
   owner "root"
   group "root"
 end
-
