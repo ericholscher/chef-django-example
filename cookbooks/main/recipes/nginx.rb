@@ -14,6 +14,7 @@ cookbook_file "/etc/nginx/sites-enabled/readthedocs" do
   mode 0640
   owner "root"
   group "root"
+  notifies :restart, resources(:service => "nginx")
 end
 
 cookbook_file "/etc/nginx/nginx.conf" do
@@ -21,4 +22,6 @@ cookbook_file "/etc/nginx/nginx.conf" do
   mode 0640
   owner "root"
   group "root"
+  notifies :restart, resources(:service => "nginx")
+
 end
