@@ -42,4 +42,3 @@ server {
     rewrite ^/(\w+)$ http://$1.readthedocs.org/;
     rewrite ^(.*)$ http://readthedocs.org/;
 }
-
