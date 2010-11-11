@@ -9,11 +9,13 @@ service "munin-node" do
   action [:enable, :start]
 end
 
-template "/etc/munin/munin-node.conf" do
-  source "munin-node.conf"
-  mode 0640
-  owner "root"
-  group "root"
-  variables :munin_servers => node[:munin_servers] || []
-  notifies :restart, resources(:service => "munin-node")
+if node.attribute?("munin_servers")
+  template "/etc/munin/munin-node.conf" do
+    source "munin-node.conf"
+    mode 0640
+    owner "root"
+    group "root"
+    variables :munin_servers => node[:munin_servers] || []
+    notifies :restart, resources(:service => "munin-node")
+  end
 end
