@@ -37,6 +37,15 @@ end
 
 # Gunicorn setup
 
+
+service "readthedocs-gunicorn" do
+    provider Chef::Provider::Service::Upstart
+    enabled true
+    running true
+    supports :restart => true, :reload => true, :status => true
+    action [:enable, :start]
+end
+
 cookbook_file "/etc/init/readthedocs-gunicorn.conf" do
     source "gunicorn.conf"
     owner "root"
@@ -45,7 +54,14 @@ cookbook_file "/etc/init/readthedocs-gunicorn.conf" do
     notifies :restart, resources(:service => "readthedocs-gunicorn")
 end
 
-service "readthedocs-gunicorn" do
+cookbook_file "/etc/init/readthedocs-celery.conf" do
+    source "celery.conf"
+    owner "root"
+    group "root"
+    mode 0644
+end
+
+service "readthedocs-celery" do
     provider Chef::Provider::Service::Upstart
     enabled true
     running true
@@ -59,4 +75,3 @@ cookbook_file "/home/docs/.bash_profile" do
     group "docs"
     mode 0755
 end
-
