@@ -52,3 +52,10 @@ service "readthedocs-gunicorn" do
     action [:enable, :start]
 end
 
+cookbook_file "/home/docs/.bash_profile" do
+    source "bash_profile"
+    owner "docs"
+    group "docs"
+    mode 0755
+end
+
