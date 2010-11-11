@@ -22,10 +22,3 @@ cookbook_file "/etc/nginx/nginx.conf" do
   owner "root"
   group "root"
 end
-
-cookbook_file "/etc/nginx/mime.types" do
-  source "nginx/mime.types"
-  mode 0640
-  owner "root"
-  group "root"
-end
