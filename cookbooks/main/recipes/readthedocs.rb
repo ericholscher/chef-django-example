@@ -42,6 +42,7 @@ cookbook_file "/etc/init/readthedocs-gunicorn.conf" do
     owner "root"
     group "root"
     mode 0644
+    notifies :restart, resources(:service => "readthedocs-gunicorn")
 end
 
 service "readthedocs-gunicorn" do
