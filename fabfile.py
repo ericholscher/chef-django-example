@@ -1,4 +1,4 @@
-from fabric.api import env, local, sudo
+from fabric.api import env, local, run, sudo
 env.user = 'root'
 env.hosts = ['204.232.205.196']
 
@@ -24,8 +24,8 @@ def update():
 def reload():
     "Reload the server."
     env.user = "docs"
-    run("kill -HUP `cat %s/gunicorn.pid`" % env.rundir)
+    run("kill -HUP `cat %s/gunicorn.pid`" % env.rundir, pty=True)
 
 def restart():
     "Restart (or just start) the server"
-    run('restart readthedocs-gunicorn')
+    sudo('restart readthedocs-gunicorn', pty=True)
