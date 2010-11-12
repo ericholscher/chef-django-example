@@ -59,6 +59,7 @@ cookbook_file "/etc/init/readthedocs-celery.conf" do
     owner "root"
     group "root"
     mode 0644
+    notifies :restart, resources(:service => "readthedocs-celery")
 end
 
 service "readthedocs-celery" do
